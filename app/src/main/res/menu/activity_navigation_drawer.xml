@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_baza"
+            android:icon="@drawable/camera"
+            android:title="Baza_AR" />
+        <item
+            android:id="@+id/nav_poradnik"
+            android:icon="@drawable/training"
+            android:title="Poradnik" />
+    </group>
+
+    <item android:title="Informacje">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_o_nas"
+                    android:icon="@drawable/about"
+                    android:title="O nas" />
+                <item
+                    android:id="@+id/zaloguj"
+                    android:icon="@drawable/account"
+                    android:title="Autoryzacja" />
+            </group>
+        </menu>
+    </item>
+
+</menu>
