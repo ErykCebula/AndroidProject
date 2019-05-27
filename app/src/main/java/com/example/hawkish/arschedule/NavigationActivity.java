@@ -83,7 +83,7 @@ public class NavigationActivity extends AppCompatActivity
         };
         mSwitch.setOnCheckedChangeListener(mSwitchListener);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.getBackground().setAlpha(128);
@@ -139,7 +139,7 @@ public class NavigationActivity extends AppCompatActivity
                 return true;
             }
             image.setImageResource(R.drawable.menu_black);
-            fragmentClass = InterestedObjects.class;
+            fragmentClass = FragmentUz.class;
         } else if (id == R.id.nav_poradnik) {
             mSwitch.setVisibility(View.INVISIBLE);
             image.setImageResource(R.drawable.menu);
@@ -148,11 +148,6 @@ public class NavigationActivity extends AppCompatActivity
             mSwitch.setVisibility(View.INVISIBLE);
             image.setImageResource(R.drawable.menu);
             fragmentClass = AboutUsFragment.class;
-        } else if (id == R.id.zaloguj) {
-            mSwitch.setVisibility(View.INVISIBLE);
-            image.setImageResource(R.drawable.menu);
-            Authorization authorization = new Authorization();
-            authorization.show(getSupportFragmentManager(), "Autoryzacja");
             return true;
         }
 

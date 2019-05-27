@@ -8,7 +8,7 @@
         <item
             android:id="@+id/nav_baza"
             android:icon="@drawable/camera"
-            android:title="Baza_AR" />
+            android:title="Baza wykładowców" />
         <item
             android:id="@+id/nav_poradnik"
             android:icon="@drawable/training"
@@ -21,11 +21,8 @@
                 <item
                     android:id="@+id/nav_o_nas"
                     android:icon="@drawable/about"
-                    android:title="O nas" />
-                <item
-                    android:id="@+id/zaloguj"
-                    android:icon="@drawable/account"
-                    android:title="Autoryzacja" />
+                    android:title="O mnie" />
+
             </group>
         </menu>
     </item>
