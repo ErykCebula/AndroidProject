@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,25 +13,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
-import java.util.Objects;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, InternetConnectivityListener {
     public static ImageView image;
     public static Switch mSwitch;
-    public static LinearLayout layout;
     public static BottomSheetBehavior bottomSheetBehavior;
     public static NavigationView navigationView;
     public static Fragment fragment = null;
@@ -43,6 +38,7 @@ public class NavigationActivity extends AppCompatActivity
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +46,6 @@ public class NavigationActivity extends AppCompatActivity
 
         image = findViewById(R.id.imageView);
         drawer = findViewById(R.id.drawer_layout);
-
-        bottomSheetBehavior = BottomSheetBehavior.from(layout);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         image.setOnClickListener(new View.OnClickListener() {
 
@@ -96,7 +89,6 @@ public class NavigationActivity extends AppCompatActivity
         navigationView.getBackground().setAlpha(128);
         drawer.setScrimColor(Color.TRANSPARENT);
 
-        showCamera();
         hideSystemPanel();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -129,8 +121,6 @@ public class NavigationActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         fragmentManager.beginTransaction().replace(R.id.Content, fragment).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
     }

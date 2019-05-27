@@ -32,7 +32,7 @@ public class Connection extends Activity implements InternetConnectivityListener
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_up_connection);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         connectionButton = findViewById(R.id.connectionButton);
         connectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
