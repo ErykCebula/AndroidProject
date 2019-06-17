@@ -1,0 +1,11 @@
+{
+  "Lecturers" : {
+    "Lecturer1" : {
+      "image" : "https://dummyimage.com/600x400/000/fff",
+      "lecture" : "dummylecture",
+      "name" : "dummyname",
+      "numOfClass" : "dummynum",
+      "website" : "www.google.com"
+    }
+  }
+}

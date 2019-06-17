@@ -1,11 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.ar.sceneform.plugin'
 
 android {
     compileSdkVersion 28
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         applicationId "com.example.hawkish.arschedule"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -40,6 +45,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.takusemba:spotlight:1.6.1'
     implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.9.0'
+    implementation 'com.karumi:dexter:5.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -49,3 +56,19 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+
+sceneform.asset('sampledata/dino.fbx',
+        'default',
+        'sampledata/dino.sfa',
+        'src/main/assets/dino')
+
+sceneform.asset('sampledata/dino.fbx',
+        'default',
+        'sampledata/dino.sfa',
+        'src/main/res/raw/dino')
+
+sceneform.asset('sampledata/lion.fbx',
+        'default',
+        'sampledata/lion.sfa',
+        'src/main/res/raw/lion')

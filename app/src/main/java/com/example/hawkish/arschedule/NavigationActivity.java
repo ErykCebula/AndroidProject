@@ -32,7 +32,6 @@ public class NavigationActivity extends AppCompatActivity
     public static NavigationView navigationView;
     public static Fragment fragment = null;
     public static Class fragmentClass = null;
-    public static CompoundButton.OnCheckedChangeListener mSwitchListener;
     public static boolean isCreated;
     public DrawerLayout drawer;
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -56,32 +55,7 @@ public class NavigationActivity extends AppCompatActivity
 
         });
 
-        mSwitch = findViewById(R.id.switchForActionBar);
-        mSwitchListener = new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    image.setImageResource(R.drawable.menu_white);
-                    fragmentClass = CameraFragment.class;
-                    try {
-                        fragment = (Fragment) fragmentClass.newInstance();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
 
-                    if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    fragmentManager.beginTransaction().replace(R.id.Content, fragment).commit();
-
-                    int size = navigationView.getMenu().size();
-                    for (int i = 0; i < size; i++) {
-                        navigationView.getMenu().getItem(i).setChecked(false);
-                    }
-                } else {
-                    showCamera();
-                }
-            }
-        };
-        mSwitch.setOnCheckedChangeListener(mSwitchListener);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -95,6 +69,7 @@ public class NavigationActivity extends AppCompatActivity
         InternetAvailabilityChecker.init(this);
         mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance();
         mInternetAvailabilityChecker.addInternetConnectivityListener(this);
+        showCamera();
     }
 
     @Override
@@ -102,19 +77,17 @@ public class NavigationActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (fragment instanceof CameraFragment) {
+            if (fragment instanceof ArFragment) {
                 super.onBackPressed();
             } else {
-                if (mSwitch.isChecked()) mSwitch.setChecked(false);
-                else showCamera();
+                showCamera();
             }
         }
     }
 
     public void showCamera() {
         image.setImageResource(R.drawable.menu_black);
-        mSwitch.setVisibility(View.VISIBLE);
-        fragmentClass = CameraFragment.class;
+        fragmentClass = ArFragment.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
@@ -132,20 +105,14 @@ public class NavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_baza) {
-            mSwitch.setVisibility(View.VISIBLE);
-            if (mSwitch.isChecked()) {
-                mSwitch.setChecked(false);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            }
             image.setImageResource(R.drawable.menu_black);
             fragmentClass = FragmentUz.class;
         } else if (id == R.id.nav_poradnik) {
-            mSwitch.setVisibility(View.INVISIBLE);
+
             image.setImageResource(R.drawable.menu);
             fragmentClass = GuideFragment.class;
         } else if (id == R.id.nav_o_nas) {
-            mSwitch.setVisibility(View.INVISIBLE);
+
             image.setImageResource(R.drawable.menu);
             fragmentClass = AboutUsFragment.class;
             return true;
@@ -160,8 +127,6 @@ public class NavigationActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         fragmentManager.beginTransaction().replace(R.id.Content, fragment).commit();
         drawer.closeDrawer(GravityCompat.START);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="pl.ttpsc.vineyards.WineryFragment"
+    tools:context=".FragmentUz"
     tools:ignore="NamespaceTypo"
     >
     <!-- In ImageButton add Image by inserting: android:src="@drawable/NameOfJpg -->
@@ -30,7 +30,7 @@
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="250"
+                android:layout_height="250dp"
                 android:background="@android:color/white"
                 android:contentDescription="@string/app_name"
                 android:fitsSystemWindows="true"

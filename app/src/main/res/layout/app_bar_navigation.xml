@@ -24,13 +24,4 @@
         android:largeHeap="true"
         app:srcCompat="@drawable/menu_black" />
 
-    <Switch
-        android:id="@+id/switchForActionBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="14dp"
-        android:text="AR " />
-
 </android.support.design.widget.CoordinatorLayout>
