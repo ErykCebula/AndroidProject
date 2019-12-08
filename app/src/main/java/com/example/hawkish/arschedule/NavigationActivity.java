@@ -77,7 +77,7 @@ public class NavigationActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (fragment instanceof ArFragment) {
+            if (fragment instanceof CameraFragment) {
                 super.onBackPressed();
             } else {
                 showCamera();
@@ -87,7 +87,7 @@ public class NavigationActivity extends AppCompatActivity
 
     public void showCamera() {
         image.setImageResource(R.drawable.menu_black);
-        fragmentClass = ArFragment.class;
+        fragmentClass = CameraFragment.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {

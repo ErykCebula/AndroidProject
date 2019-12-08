@@ -1,5 +1,6 @@
 package com.example.hawkish.arschedule;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class FragmentUz extends Fragment {
     RecyclerView recyclerView;
@@ -67,23 +69,21 @@ public class FragmentUz extends Fragment {
     }
 
     private void init() {
-        sv = getActivity().findViewById(R.id.mSearch);
+        sv = Objects.requireNonNull(getActivity()).findViewById(R.id.mSearch);
         recyclerView = v.findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdapterUz(getContext(), uzList);
         recyclerView.setAdapter(adapter);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void dismissKeyboardRV() {
-        recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+        recyclerView.setOnTouchListener((v, event) -> {
 
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                return false;
-            }
+            return false;
         });
     }
 
@@ -104,7 +104,7 @@ public class FragmentUz extends Fragment {
                 mDataKey.clear();
                 for (DataSnapshot single : dataSnapshot.getChildren()) {
                     uzList.add(single.getValue(ModelUz.class));
-                    mDataKey.add(single.getKey().toString());
+                    mDataKey.add(single.getKey());
                 }
                 listSort();
                 progress.dismiss();
@@ -119,11 +119,7 @@ public class FragmentUz extends Fragment {
     }
 
     private void listSort() {
-        Collections.sort(uzList, new Comparator<ModelUz>() {
-            public int compare(ModelUz w1, ModelUz w2) {
-                return w1.getName().compareToIgnoreCase(w2.getName());
-            }
-        });
+        Collections.sort(uzList, (w1, w2) -> w1.getName().compareToIgnoreCase(w2.getName()));
     }
 
     private void searchViewLoad() {
@@ -144,13 +140,10 @@ public class FragmentUz extends Fragment {
     }
 
     private void listenForSearchTab() {
-        sv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sv.setIconified(false);
-            }
-        });
+        sv.setOnClickListener(v -> sv.setIconified(false));
 
     }
+
+
 
 }

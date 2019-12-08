@@ -17,7 +17,7 @@ import java.util.List;
 public class AdapterUz extends RecyclerView.Adapter<AdapterUz.ViewHolder> implements Filterable {
 
     private Context mContext;
-    CustomFilter filter;
+    private CustomFilter filter;
     public List<ModelUz> uzList;
     public AdapterUz(Context context, List<ModelUz> list) {
         mContext = context;

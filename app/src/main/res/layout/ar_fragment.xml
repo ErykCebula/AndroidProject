@@ -6,15 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ArFragment"
+    tools:context=".CameraFragment"
     tools:ignore="NamespaceTypo">
-<com.google.ar.sceneform.ArSceneView
-    android:id="@+id/arView"
+<SurfaceView
+    android:id="@+id/surfaceView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" />
 
-
-    ></com.google.ar.sceneform.ArSceneView>
+    <TextView
+        android:id="@+id/text_AR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="NO TEXT"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        ></TextView>
 
 
 </FrameLayout>
